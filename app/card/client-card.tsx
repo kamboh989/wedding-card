@@ -169,7 +169,7 @@ export default function CardClient() {
 
         {/* Personalized card */}
         <div className="mt-10 card-3d">
-          <div className="relative rounded-[28px] glass soft-shadow p-6 sm:p-9 overflow-hidden">
+          <div className="relative rounded-[28px] glass soft-shadow p-2 sm:p-9 overflow-hidden">
             <div className="pointer-events-none absolute -left-1/2 top-[-60%] h-[220%] w-1/2 bg-white/35 blur-2xl opacity-20 animate-[shine_2.4s_ease-in-out_infinite]" />
 
             <div className="flex items-center justify-between gap-3 ">
@@ -182,12 +182,7 @@ export default function CardClient() {
                 </h2>
               </div>
 
-              <button
-                onClick={simulateReveal}
-                className="rounded-2xl bg-white/60 border border-black/5 px-4 py-2 text-sm hover:opacity-90"
-              >
-                Unseal Invitation
-              </button>
+             
             </div>
 
             {loading ? (
