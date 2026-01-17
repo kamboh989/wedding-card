@@ -196,7 +196,7 @@ export default function CardClient() {
               </div>
             ) : (
               <div className="mt-7 space-y-6 reveal">
-                <div className="rounded-2xl bg-white/45 border border-black/5 p-5">
+                <div className="rounded-2xl bg-white/45 border border-black/5 p-4">
                   <p className="text-sm text-[color:var(--ink)]/75">
                     Invitation:
                     {guest.withFamily ? (
@@ -221,7 +221,7 @@ export default function CardClient() {
                   {events.map((e) => (
                     <div
                       key={e.key}
-                      className="rounded-2xl bg-white/40 border border-black/5 p-5 transition hover:translate-y-[-2px] hover:shadow-[0_16px_50px_rgba(40,15,8,.18)]"
+                      className="rounded-2xl bg-white/40 border border-black/5 p-4 transition hover:translate-y-[-2px] hover:shadow-[0_16px_50px_rgba(40,15,8,.18)]"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div>
