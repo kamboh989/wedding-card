@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+
+@tailwind utilities;
+
+:root{
+  --peach-1:#f6c6b5;
+  --peach-2:#f2b6a6;
+  --peach-3:#f9d2c6;
+  --gold:#966e13;
+  --gold-soft:#f3de9a;
+  --ink:#3b2b25;
+}
+
+html, body { height: 100%; }
+
+.bg-envelope{
+  background: radial-gradient(1200px 700px at 50% 20%, rgba(255,255,255,.35), transparent 60%),
+              linear-gradient(180deg, var(--peach-3), var(--peach-2));
+}
+
+.envelope-lines:before,
+.envelope-lines:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.18;
+  background:
+    linear-gradient(135deg, transparent 49.5%, rgba(60,35,25,.35) 50%, transparent 50.5%),
+    linear-gradient(225deg, transparent 49.5%, rgba(60,35,25,.35) 50%, transparent 50.5%);
+  pointer-events:none;
+}
+
+@keyframes floaty {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes shine {
+  0% { transform: translateX(-120%) rotate(18deg); opacity:0; }
+  30% { opacity:.25; }
+  100% { transform: translateX(120%) rotate(18deg); opacity:0; }
+}
+@keyframes popIn {
+  0% { transform: translateY(14px) scale(.98); opacity:0; }
+  100% { transform: translateY(0) scale(1); opacity:1; }
+}
+
+.card-3d{
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+.glass{
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.24);
+  backdrop-filter: blur(14px);
+}
+
+.gold-text{
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.soft-shadow{
+  box-shadow: 0 20px 80px rgba(25,10,5,.25);
+}
+
+.reveal{
+  animation: popIn .6s ease-out both;
+}
