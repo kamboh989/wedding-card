@@ -173,7 +173,7 @@ export default function CardClient() {
             <div className="pointer-events-none absolute -left-1/2 top-[-60%] h-[220%] w-1/2 bg-white/35 blur-2xl opacity-20 animate-[shine_2.4s_ease-in-out_infinite]" />
 
             <div className="flex items-center justify-between gap-3 ">
-              <div>
+              <div className="p-3">
                 <p className="text-xs tracking-[0.25em] uppercase text-[color:var(--ink)]/55">
                   Personalized Invitation
                 </p>
