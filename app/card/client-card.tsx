@@ -253,9 +253,8 @@ export default function CardClient() {
                     <p className="text-lg font-[serif] gold-text">
                       وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
                     </p>
-                    <p className="mt-3 text-sm text-[color:var(--ink)]/70 italic leading-relaxed">
-                      “And among His signs is that He created for you spouses from among yourselves,
-                      so that you may find tranquility in them.”
+                    <p className="mt-3 text-sm text-[color:var(--ink)]/70  leading-relaxed">
+                     ور اُس کی نشانیوں میں سے یہ ہے کہ اُس نے تم ہی میں سے تمہارے لیے جوڑے پیدا کیے تاکہ تم اُن سے سکون حاصل کرو۔
                     </p>
                     <p className="mt-2 text-xs text-[color:var(--ink)]/60">
                       — Surah Ar-Rum (30:21)
