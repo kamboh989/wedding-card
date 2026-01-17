@@ -150,5 +150,5 @@ html, body { height: 100%; font-family: var(--font-nunito), sans-serif; }
 
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  80% { transform: translateY(-10px); }
 }

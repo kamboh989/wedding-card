@@ -172,7 +172,7 @@ export default function CardClient() {
           <div className="relative rounded-[28px] glass soft-shadow p-6 sm:p-9 overflow-hidden">
             <div className="pointer-events-none absolute -left-1/2 top-[-60%] h-[220%] w-1/2 bg-white/35 blur-2xl opacity-20 animate-[shine_2.4s_ease-in-out_infinite]" />
 
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center justify-between gap-3 ">
               <div>
                 <p className="text-xs tracking-[0.25em] uppercase text-[color:var(--ink)]/55">
                   Personalized Invitation
@@ -222,7 +222,7 @@ export default function CardClient() {
                   </p>
                 </div>
 
-                <div className="grid gap-3">
+                <div className="grid gap-3 animate-[floatSlow_3s_ease-in-out_infinite]">
                   {events.map((e) => (
                     <div
                       key={e.key}
@@ -254,7 +254,7 @@ export default function CardClient() {
 
                 {/* ===== EXTRA ISLAMIC + WEDDING SECTIONS (adds length) ===== */}
                 <div className="mt-10 space-y-6">
-                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
+                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow animate-[floatSlow_3s_ease-in-out_infinite]">
                     <p className="text-lg font-[serif] gold-text">
                       وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
                     </p>
@@ -271,7 +271,7 @@ export default function CardClient() {
                     <span className="h-[1px] w-44 bg-gradient-to-r from-transparent via-[color:var(--gold)] to-transparent animate-pulse" />
                   </div>
 
-                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
+                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow animate-[floatSlow_3s_ease-in-out_infinite]">
                     <h3 className="text-lg font-semibold gold-text">
                       With the Blessings of Our Parents
                     </h3>
@@ -284,7 +284,7 @@ export default function CardClient() {
 
                   <div className="relative">
                     <div className="absolute inset-0 rounded-3xl blur-xl bg-[color:var(--gold)]/10" />
-                    <div className="relative rounded-3xl bg-white/50 border border-[color:var(--gold)]/30 p-6 text-center animate-[floatSlow_6s_ease-in-out_infinite]">
+                    <div className="relative rounded-3xl bg-white/50 border border-[color:var(--gold)]/30 p-6 text-center animate-[floatSlow_3s_ease-in-out_infinite]">
                       <h3 className="text-lg font-semibold gold-text">
                         Nikah & Celebration
                       </h3>
@@ -295,7 +295,7 @@ export default function CardClient() {
                     </div>
                   </div>
 
-                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
+                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow animate-[floatSlow_3s_ease-in-out_infinite]">
                     <p className="text-sm text-[color:var(--ink)]/70 italic leading-relaxed">
                       May Allah fill our lives with mercy, affection, and peace,
                       and grant us a marriage filled with barakah and love.
