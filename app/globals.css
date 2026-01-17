@@ -9,7 +9,7 @@
   --peach-3:#f9d2c6;
   --gold:#966e13;
   --gold-soft:#f3de9a;
-  --ink:#3b2b25;
+  --ink:#0c0c0c;
 }
 
 html, body { height: 100%; }
@@ -69,4 +69,81 @@ html, body { height: 100%; }
 
 .reveal{
   animation: popIn .6s ease-out both;
+}
+
+
+@keyframes sealFloat {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: .55; }
+  50% { transform: scale(1.06); opacity: .85; }
+}
+
+@keyframes openTop {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+
+@keyframes openBottom {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+
+@keyframes sealFade {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.6); }
+}
+
+@keyframes sparkle {
+  0%,100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-10px); opacity: 1; }
+}
+
+@keyframes envelopeTop {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+@keyframes envelopeBottom {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+@keyframes sealBreak {
+  0% { transform: scale(1); opacity: 1; }
+  70% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(0.4); opacity: 0; }
+}
+
+/* Golden cross card pattern */
+.bg-golden-cross {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(45deg, rgba(230,200,106,0.12) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(230,200,106,0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.55;
+}
+
+/* Shimmer layer */
+.bg-golden-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(230,200,106,0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  animation: shimmerMove 10s linear infinite;
+}
+
+@keyframes shimmerMove {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }

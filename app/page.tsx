@@ -25,66 +25,82 @@ export default function HomePage() {
   }
 
   return (
-    <main className="relative min-h-screen bg-envelope text-[color:var(--ink)]">
-      <div className="absolute inset-0 envelope-lines" />
+    <main className="relative min-h-screen bg-gradient-to-b from-black via-[#120b08] to-black text-white overflow-hidden">
+      {/* subtle lines */}
+      <div className="absolute inset-0 envelope-lines opacity-25" />
+
+      {/* stars */}
       <Stars />
 
+      {/* golden cross pattern + shimmer */}
+      <div className="bg-golden-cross" />
+      <div className="bg-golden-shimmer" />
+
+      {/* content */}
       <div className="relative z-10 mx-auto flex min-h-screen max-w-xl flex-col px-5 py-10">
-        {/* Top public content */}
+        {/* ===== HEADER ===== */}
         <header className="text-center mt-4">
-          <p className="text-xs tracking-[0.28em] uppercase text-[color:var(--ink)]/55">
-            Wedding Invitation
+          <p className="text-xs tracking-[0.35em] uppercase text-white/70">
+            Wedding Announcement
           </p>
 
-          <h1 className="mt-4 text-4xl sm:text-5xl font-semibold leading-tight">
-            <span className="gold-text">Umer</span>{" "}
-            <span className="text-[color:var(--ink)]/65">&</span>{" "}
-            <span className="gold-text">Mrs Umer</span>
+          <h1 className="mt-5 text-4xl sm:text-5xl font-semibold leading-tight">
+            <span className="bg-gradient-to-b from-[#f6e6b3] via-[#e6c86a] to-[#cfa33f] bg-clip-text text-transparent drop-shadow-[0_8px_18px_rgba(0,0,0,0.35)]">
+              Umer
+            </span>{" "}
+            <span className="text-white/50 font-light">&</span>{" "}
+            <span className="bg-gradient-to-b from-[#f6e6b3] via-[#e6c86a] to-[#cfa33f] bg-clip-text text-transparent drop-shadow-[0_8px_18px_rgba(0,0,0,0.35)]">
+              Mrs Umer
+            </span>
           </h1>
 
-          <p className="mt-3 text-sm text-[color:var(--ink)]/65">
-            “Esta invitación es exclusiva para ti”
+          <p className="mt-4 text-sm sm:text-base text-white/70 italic tracking-wide">
+            Request the pleasure of your company as we celebrate our union.
           </p>
 
-          <div className="mt-4 text-sm text-[color:var(--ink)]/70">
-            <div>📅 12 May 2026</div>
-            <div className="mt-1">📍 Royal Marquee, Lahore</div>
+          {/* divider */}
+          <div className="mt-6 flex justify-center">
+            <span className="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#e6c86a]/70 to-transparent" />
           </div>
+
+          <p className="mt-4 text-xs tracking-[0.18em] uppercase text-white/60">
+            Private Invitation • Verified Access
+          </p>
         </header>
 
-        {/* Input on page (no modal/prompt) */}
-        <section className="mt-10">
-          <div className="glass soft-shadow rounded-3xl p-4 sm:p-5">
-            <p className="text-sm font-medium text-[color:var(--ink)]/70 text-center">
+        {/* ===== INPUT SECTION ===== */}
+        <section className="mt-12">
+          <div className="rounded-3xl p-4 sm:p-5 border border-white/15 bg-white/5 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,.45)]">
+            <p className="text-sm font-medium text-white/80 text-center">
               Enter your invited phone number
             </p>
 
-            <div className="mt-3 flex gap-2">
+            <div className="mt-4 flex gap-2">
               <input
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="e.g. 0300 1234567"
-                className="w-full rounded-2xl bg-white/55 border border-black/5 px-4 py-3 outline-none focus:ring-2 focus:ring-[color:var(--gold)]/30"
+                className="w-full rounded-2xl bg-black/30 border border-white/15 px-4 py-3 text-white placeholder:text-white/50 outline-none focus:ring-2 focus:ring-[#e6c86a]/40"
               />
             </div>
 
             {err ? (
-              <p className="mt-2 text-xs text-red-700/70 text-center">{err}</p>
+              <p className="mt-2 text-xs text-red-300/80 text-center">{err}</p>
             ) : (
-              <p className="mt-2 text-xs text-[color:var(--ink)]/55 text-center">
-                +92 / 92 / 03 formats supported
+              <p className="mt-2 text-xs text-white/60 text-center">
+                please ensure the number is correct
               </p>
             )}
           </div>
         </section>
 
-        {/* Seal button in middle */}
-        <section className="mt-10 flex justify-center">
+        {/* ===== SEAL BUTTON ===== */}
+        <section className="mt-12 flex justify-center">
           <SealButton initials="U & M" onClick={openCard} />
         </section>
 
-        {/* Small footer hint */}
-        <footer className="mt-auto pt-10 text-center text-xs text-[color:var(--ink)]/50">
+        {/* ===== FOOTER ===== */}
+        <footer className="mt-auto pt-12 text-center text-xs text-white/50">
           © {new Date().getFullYear()} Umer & Mrs Umer • All rights reserved
         </footer>
       </div>
