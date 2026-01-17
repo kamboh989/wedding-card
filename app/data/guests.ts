@@ -8,8 +8,8 @@ export type Guest = {
 
 export const GUESTS: Guest[] = [
   {
-    phone: "03001234567",
-    name: "Ali Raza",
+    phone: "03009873531",
+    name: "Abdullah Iqbal",
     persons: 4,
     withFamily: true,
     invitedTo: ["Mehndi", "Walima"],

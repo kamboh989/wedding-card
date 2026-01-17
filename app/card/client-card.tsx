@@ -18,7 +18,7 @@ export default function CardClient() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setShowWelcome(false), 5800); // 1.8 sec
+    const t = setTimeout(() => setShowWelcome(false), 5800);
     return () => clearTimeout(t);
   }, []);
 
@@ -58,9 +58,14 @@ export default function CardClient() {
         <div className="absolute inset-0 envelope-lines" />
         <Stars />
 
+        {/* cross bg + shimmer (same as home) */}
+        <div className="absolute inset-0 bg-golden-cross opacity-40 pointer-events-none" />
+        <div className="absolute inset-0 bg-golden-shimmer pointer-events-none" />
+        <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+
         <div className="relative z-10 text-center px-6">
           <div className="mx-auto h-20 w-20 rounded-full bg-white/70 border border-black/5 shadow-lg grid place-items-center animate-pulse">
-            <span className="text-lg font-[cursive] text-[color:var(--ink)]">
+            <span className="text-lg font-[cursive] text-[color:var(--ink)] whitespace-nowrap">
               U & M
             </span>
           </div>
@@ -83,12 +88,28 @@ export default function CardClient() {
     );
   }
 
-  const mapEmbed = "https://www.google.com/maps?q=Royal%20Marquee%20Lahore&output=embed";
+  const mapEmbed =
+    "https://www.google.com/maps?q=Royal%20Marquee%20Lahore&output=embed";
 
   const events = [
-    { key: "Mehndi", date: "Friday • 10 May 2026", time: "8:00 PM", venue: "Royal Marquee, Lahore" },
-    { key: "Barat", date: "Saturday • 11 May 2026", time: "9:00 PM", venue: "Royal Marquee, Lahore" },
-    { key: "Walima", date: "Sunday • 12 May 2026", time: "8:30 PM", venue: "Royal Marquee, Lahore" },
+    {
+      key: "Mehndi",
+      date: "Friday • 10 May 2026",
+      time: "8:00 PM",
+      venue: "Royal Marquee, Lahore",
+    },
+    {
+      key: "Barat",
+      date: "Saturday • 11 May 2026",
+      time: "9:00 PM",
+      venue: "Royal Marquee, Lahore",
+    },
+    {
+      key: "Walima",
+      date: "Sunday • 12 May 2026",
+      time: "8:30 PM",
+      venue: "Royal Marquee, Lahore",
+    },
   ].filter((e) => guest.invitedTo.includes(e.key));
 
   function simulateReveal() {
@@ -97,11 +118,11 @@ export default function CardClient() {
   }
 
   return (
-    <main className="relative min-h-screen bg-envelope text-[color:var(--ink)]">
+    <main className="relative min-h-screen bg-envelope text-[color:var(--ink)] overflow-hidden">
       <div className="absolute inset-0 envelope-lines" />
       <Stars />
 
-      <div className="relative z-10 mx-auto max-w-2xl px-5 py-10">
+      <div className="relative z-10 mx-auto max-w-2xl px-5 py-12 sm:py-16">
         {/* Top video */}
         <div className="rounded-3xl overflow-hidden soft-shadow border border-white/25">
           <div className="relative bg-black/10">
@@ -111,7 +132,7 @@ export default function CardClient() {
               muted
               loop
               playsInline
-              src="/set.mp4"   
+              src="/set.mp4"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
@@ -147,8 +168,8 @@ export default function CardClient() {
         </div>
 
         {/* Personalized card */}
-        <div className="mt-8 card-3d">
-          <div className="relative rounded-[28px] glass soft-shadow p-5 sm:p-7 overflow-hidden">
+        <div className="mt-10 card-3d">
+          <div className="relative rounded-[28px] glass soft-shadow p-6 sm:p-9 overflow-hidden">
             <div className="pointer-events-none absolute -left-1/2 top-[-60%] h-[220%] w-1/2 bg-white/35 blur-2xl opacity-20 animate-[shine_2.4s_ease-in-out_infinite]" />
 
             <div className="flex items-center justify-between gap-3">
@@ -171,40 +192,56 @@ export default function CardClient() {
 
             {loading ? (
               <div className="mt-6 rounded-2xl bg-white/40 border border-black/5 p-4 text-center reveal">
-                <p className="text-sm text-[color:var(--ink)]/70">Unsealing your invitation…</p>
+                <p className="text-sm text-[color:var(--ink)]/70">
+                  Unsealing your invitation…
+                </p>
                 <div className="mt-3 h-2 w-full rounded-full bg-white/40 overflow-hidden">
                   <div className="h-full w-2/3 rounded-full bg-[color:var(--gold)]/60 animate-pulse" />
                 </div>
               </div>
             ) : (
-              <div className="mt-5 space-y-4 reveal">
-                <div className="rounded-2xl bg-white/45 border border-black/5 p-4">
+              <div className="mt-7 space-y-6 reveal">
+                <div className="rounded-2xl bg-white/45 border border-black/5 p-5">
                   <p className="text-sm text-[color:var(--ink)]/75">
-  Invitation:
-  {guest.withFamily ? (
-    <span className="ml-2 font-semibold">With Family</span>
-  ) : (
-    <span className="ml-2 font-semibold">
-      {guest.persons} Persons
-    </span>
-  )}
-</p>
+                    Invitation:
+                    {guest.withFamily ? (
+                      <span className="ml-2 font-semibold">With Family</span>
+                    ) : (
+                      <span className="ml-2 font-semibold">
+                        {guest.persons} Persons
+                      </span>
+                    )}
+                  </p>
 
                   <p className="mt-2 text-sm text-[color:var(--ink)]/70">
                     You are invited to:
-                    <span className="font-semibold"> {guest.invitedTo.join(", ")}</span>
+                    <span className="font-semibold">
+                      {" "}
+                      {guest.invitedTo.join(", ")}
+                    </span>
                   </p>
                 </div>
 
                 <div className="grid gap-3">
                   {events.map((e) => (
-                    <div key={e.key} className="rounded-2xl bg-white/40 border border-black/5 p-4">
+                    <div
+                      key={e.key}
+                      className="rounded-2xl bg-white/40 border border-black/5 p-5 transition hover:translate-y-[-2px] hover:shadow-[0_16px_50px_rgba(40,15,8,.18)]"
+                    >
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <h3 className="text-lg font-semibold gold-text">{e.key}</h3>
-                          <p className="text-sm text-[color:var(--ink)]/70">{e.date}</p>
-                          <p className="text-sm text-[color:var(--ink)]/70">{e.time}</p>
-                
+                          <h3 className="text-lg font-semibold gold-text">
+                            {e.key}
+                          </h3>
+                          <p className="text-sm text-[color:var(--ink)]/70">
+                            {e.date}
+                          </p>
+                          <p className="text-sm text-[color:var(--ink)]/70">
+                            {e.time}
+                          </p>
+                          <p className="mt-1 text-sm text-[color:var(--ink)]/70">
+                            {e.venue}
+                          </p>
                         </div>
 
                         <span className="inline-flex rounded-full border border-[color:var(--gold)]/30 bg-white/35 px-3 py-1 text-xs text-[color:var(--ink)]/70">
@@ -215,37 +252,96 @@ export default function CardClient() {
                   ))}
                 </div>
 
-                <div className="rounded-2xl bg-white/45 border border-black/5 p-4">
+                {/* ===== EXTRA ISLAMIC + WEDDING SECTIONS (adds length) ===== */}
+                <div className="mt-10 space-y-6">
+                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
+                    <p className="text-lg font-[serif] gold-text">
+                      وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
+                    </p>
+                    <p className="mt-3 text-sm text-[color:var(--ink)]/70 italic leading-relaxed">
+                      “And among His signs is that He created for you spouses from among yourselves,
+                      so that you may find tranquility in them.”
+                    </p>
+                    <p className="mt-2 text-xs text-[color:var(--ink)]/60">
+                      — Surah Ar-Rum (30:21)
+                    </p>
+                  </div>
+
+                  <div className="flex justify-center py-2">
+                    <span className="h-[1px] w-44 bg-gradient-to-r from-transparent via-[color:var(--gold)] to-transparent animate-pulse" />
+                  </div>
+
+                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
+                    <h3 className="text-lg font-semibold gold-text">
+                      With the Blessings of Our Parents
+                    </h3>
+                    <p className="mt-3 text-sm text-[color:var(--ink)]/70 leading-relaxed">
+                      This joyous union is made possible by the endless prayers,
+                      love, and guidance of our parents and elders. We seek your prayers
+                      as we begin this sacred journey together.
+                    </p>
+                  </div>
+
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-3xl blur-xl bg-[color:var(--gold)]/10" />
+                    <div className="relative rounded-3xl bg-white/50 border border-[color:var(--gold)]/30 p-6 text-center animate-[floatSlow_6s_ease-in-out_infinite]">
+                      <h3 className="text-lg font-semibold gold-text">
+                        Nikah & Celebration
+                      </h3>
+                      <p className="mt-3 text-sm text-[color:var(--ink)]/70 leading-relaxed">
+                        Join us as two hearts unite in faith, love, and commitment,
+                        celebrating a bond written by destiny and sealed with prayers.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
+                    <p className="text-sm text-[color:var(--ink)]/70 italic leading-relaxed">
+                      May Allah fill our lives with mercy, affection, and peace,
+                      and grant us a marriage filled with barakah and love.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div className="rounded-2xl bg-white/45 border border-black/5 p-5">
                   <h3 className="text-lg font-semibold">Location</h3>
                   <p className="mt-1 text-sm text-[color:var(--ink)]/70">
                     Royal Marquee, Lahore — Please arrive 15 minutes early.
                   </p>
                 </div>
 
+                {/* Map */}
                 <div className="rounded-3xl overflow-hidden border border-white/25 soft-shadow">
                   <iframe
                     src={mapEmbed}
-                    className="w-full h-[260px]"
+                    className="w-full h-[280px]"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
 
-                <div className="pt-4 text-center text-xs text-[color:var(--ink)]/55">
+                <div className="h-8" />
+
+                {/* Footer */}
+                <div className="pt-2 text-center text-xs text-[color:var(--ink)]/55">
                   <p>With love,</p>
                   <p className="mt-1 font-semibold">
-                    Umer <span className="text-[color:var(--ink)]/60">&</span> Mrs Umer
+                    Umer <span className="text-[color:var(--ink)]/60">&</span>{" "}
+                    Mrs Umer
                   </p>
                 </div>
+
+                <div className="h-10" />
               </div>
             )}
           </div>
         </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-10 flex justify-center">
           <button
             onClick={() => router.push("/")}
-            className="rounded-2xl bg-white/60 border border-black/5 px-5 py-3 hover:opacity-90"
+            className="rounded-2xl bg-white/60 border border-black/5 px-6 py-3 hover:opacity-90"
           >
             Back to Home
           </button>
