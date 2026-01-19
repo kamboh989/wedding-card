@@ -99,7 +99,7 @@ export default function CardClient() {
         }}
       >
         {/* readability overlay (very soft) */}
-        <div className="absolute inset-0 bg-white/55" />
+        <div className="absolute inset-0 bg-white/10" />
 
         {/* elegant top ribbon */}
         <div className="absolute left-0 right-0 top-0 h-10 bg-gradient-to-b from-white/90 to-transparent" />
@@ -231,151 +231,175 @@ export default function CardClient() {
       </div>
 
       {/* ✅ CONTENT */}
-      <div className="relative z-10 mx-auto max-w-2xl px-5 py-12 sm:py-16">
-        {/* Personalized card */}
-        <div className="mt-10 card-3d">
-          <div className="relative rounded-[28px] glass soft-shadow p-2 sm:p-9 overflow-hidden">
-            <div className="pointer-events-none absolute -left-1/2 top-[-60%] h-[220%] w-1/2 bg-white/35 blur-2xl opacity-20 animate-[shine_2.4s_ease-in-out_infinite]" />
+      <div className="relative z-10 mx-auto max-w-2xl px-5">
+        <div className="mt-5 space-y-6 reveal">
+          {/* ✅ Personalized Invitation (IMAGE CARD) */}
+          {/* Put your image in: /public/personalized-bg.png */}
+          <div
+            className="
+              relative rounded-[28px] overflow-hidden
+              border border-black/10
+              shadow-[0_25px_70px_rgba(0,0,0,0.18)]
+            "
+            style={{
+              backgroundImage: "url(/card2.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            {/* readability overlay */}
+            <div className="absolute inset-0 " />
 
-            <div className="flex items-center justify-between gap-3">
-              <div className="p-3">
-                <p className="text-xs tracking-[0.25em] uppercase text-[color:var(--ink)]/55">
-                  Personalized Invitation
-                </p>
-                <h2 className="mt-2 text-2xl sm:text-3xl font-semibold text-black">
-                  Dear <span className="gold-text">{guest.name}</span>
-                </h2>
-              </div>
-            </div>
+            {/* content inside image */}
+            <div className="relative z-10 px-6 sm:px-10 py-12 sm:py-16 text-center">
+              <p className="text-[11px] tracking-[0.35em] uppercase text-[#6b5f58]/70">
+                Personalized Invitation
+              </p>
 
-            {/* Main content */}
-            <div className="mt-7 space-y-6 reveal">
-              <div className="rounded-2xl bg-white/45 border border-black/5 p-4">
-                <p className="text-sm text-[color:var(--ink)]/75">
-                  Invitation:
-                  {guest.withFamily ? (
-                    <span className="ml-2 font-semibold">With Family</span>
-                  ) : (
-                    <span className="ml-2 font-semibold">
-                      {guest.persons} Persons
-                    </span>
-                  )}
-                </p>
+              <h2 className="mt-3 text-2xl sm:text-3xl font-[serif] font-semibold text-[#3a2f2a]">
+                Dear <span className="gold-text">{guest.name}</span>
+              </h2>
 
-                <p className="mt-2 text-sm text-[color:var(--ink)]/70">
-                  You are invited to:
-                  <span className="font-semibold">
-                    {" "}
-                    {guest.invitedTo.join(", ")}
-                  </span>
-                </p>
+              <div className="my-4 flex justify-center">
+                <span className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#cbbfae] to-transparent" />
               </div>
 
-              {/* ✅ Floral Frame Event Cards */}
-              <div className="grid gap-5">
-                {events.map((e) => (
-                  <FrameEventCard
-                    key={e.key}
-                    title={e.key}
-                    date={e.date}
-                    time={e.time}
-                    venue={e.venue}
-                  />
-                ))}
-              </div>
+              <p className="text-sm text-[#5a4e47]">
+                Invitation:&nbsp;
+                <span className="font-semibold">
+                  {guest.withFamily ? "With Family" : `${guest.persons} Persons`}
+                </span>
+              </p>
 
-              {/* Islamic + Wedding sections */}
-              <div className="mt-10 space-y-6">
-                <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
-                  <p className="text-lg font-[serif] gold-text">
-                    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
-                  </p>
-                  <p className="mt-3 text-sm text-[color:var(--ink)]/70 leading-relaxed">
-                    ور اُس کی نشانیوں میں سے یہ ہے کہ اُس نے تم ہی میں سے تمہارے لیے
-                    جوڑے پیدا کیے تاکہ تم اُن سے سکون حاصل کرو۔
-                  </p>
-                  <p className="mt-2 text-xs text-[color:var(--ink)]/60">
-                    — Surah Ar-Rum (30:21)
-                  </p>
-                </div>
-
-                <div className="flex justify-center py-2">
-                  <span className="h-[1px] w-44 bg-gradient-to-r from-transparent via-[color:var(--gold)] to-transparent animate-pulse" />
-                </div>
-
-                <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
-                  <h3 className="text-lg font-semibold gold-text">
-                    With the Blessings of Our Parents
-                  </h3>
-                  <p className="mt-3 text-sm text-[color:var(--ink)]/70 leading-relaxed">
-                    This joyous union is made possible by the endless prayers, love,
-                    and guidance of our parents and elders. We seek your prayers as
-                    we begin this sacred journey together.
-                  </p>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-3xl blur-xl bg-[color:var(--gold)]/10" />
-                  <div className="relative rounded-3xl bg-white/50 border border-[color:var(--gold)]/30 p-6 text-center">
-                    <h3 className="text-lg font-semibold gold-text">
-                      Nikah & Celebration
-                    </h3>
-                    <p className="mt-3 text-sm text-[color:var(--ink)]/70 leading-relaxed">
-                      Join us as two hearts unite in faith, love, and commitment,
-                      celebrating a bond written by destiny and sealed with prayers.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
-                  <p className="text-sm text-[color:var(--ink)]/70 italic leading-relaxed">
-                    May Allah fill our lives with mercy, affection, and peace, and
-                    grant us a marriage filled with barakah and love.
-                  </p>
-                </div>
-              </div>
-
-              {/* Location */}
-              <div className="rounded-2xl bg-white/45 border border-black/5 p-5">
-                <h3 className="text-lg font-semibold">Location</h3>
-                <p className="mt-1 text-sm text-[color:var(--ink)]/70">
-                  Royal Marquee, Lahore — Please arrive 15 minutes early.
-                </p>
-              </div>
-
-              {/* Map */}
-              <div className="rounded-3xl overflow-hidden border border-white/25 soft-shadow">
-                <iframe
-                  src={mapEmbed}
-                  className="w-full h-[280px]"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-
-              <div className="h-8" />
-
-              {/* Footer */}
-              <div className="pt-2 text-center text-xs text-[color:var(--ink)]/55">
-                <p>With love,</p>
-                <p className="mt-1 font-semibold">
-                  Umer <span className="text-[color:var(--ink)]/60">&</span>{" "}
-                  Mrs Umer
-                </p>
-              </div>
-
-              <div className="h-10" />
+              <p className="mt-2 text-sm text-[#5a4e47]">
+                You are invited to:&nbsp;
+                <span className="font-semibold">{guest.invitedTo.join(", ")}</span>
+              </p>
             </div>
           </div>
-        </div>
 
-        <div className="mt-10 flex justify-center">
-          <button
-            onClick={() => router.push("/")}
-            className="rounded-2xl bg-white/60 border border-black/5 px-6 py-3 hover:opacity-90"
-          >
-            Back to Home
-          </button>
+          {/* ✅ Floral Frame Event Cards */}
+          <div className="grid gap-5">
+            {events.map((e) => (
+              <FrameEventCard
+                key={e.key}
+                title={e.key}
+                date={e.date}
+                time={e.time}
+                venue={e.venue}
+              />
+            ))}
+          </div>
+
+        {/* 🌙 Islamic Verse – Image Based */}
+<div
+  className="
+    relative mt-10 rounded-[30px] overflow-hidden
+    border border-black/10
+    shadow-[0_25px_70px_rgba(0,0,0,0.18)]
+  "
+  style={{
+    backgroundImage: "url(/card3.jpg)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* soft overlay for readability */}
+  <div className="absolute inset-0 bg-white/30" />
+
+  {/* CONTENT */}
+  <div className="relative z-10 px-6 sm:px-10 py-12 sm:py-16 text-center">
+    <p className="text-lg sm:text-xl font-[serif] gold-text leading-relaxed">
+      وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
+    </p>
+
+    <div className="my-4 flex justify-center">
+      <span className="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#d6c8a5] to-transparent" />
+    </div>
+
+    <p className="text-sm sm:text-base text-[#5a4e47] leading-relaxed">
+      ور اُس کی نشانیوں میں سے یہ ہے کہ اُس نے تم ہی میں سے تمہارے لیے
+      جوڑے پیدا کیے تاکہ تم اُن سے سکون حاصل کرو۔
+    </p>
+
+    <p className="mt-3 text-xs tracking-wide text-[#6b5f58]/70">
+      — Surah Ar-Rum (30:21)
+    </p>
+  </div>
+
+
+            <div className="flex justify-center py-2">
+              <span className="h-[1px] w-44 bg-gradient-to-r from-transparent via-[color:var(--gold)] to-transparent animate-pulse" />
+            </div>
+
+            <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
+              <h3 className="text-lg font-semibold gold-text">
+                With the Blessings of Our Parents
+              </h3>
+              <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+                This joyous union is made possible by the endless prayers, love,
+                and guidance of our parents and elders. We seek your prayers as
+                we begin this sacred journey together.
+              </p>
+            </div>
+
+            <div className="relative">
+              <div className="absolute inset-0 rounded-3xl blur-xl bg-[color:var(--gold)]/10" />
+              <div className="relative rounded-3xl  p-6 text-center">
+                <h3 className="text-lg font-semibold gold-text">
+                  Nikah & Celebration
+                </h3>
+                <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+                  Join us as two hearts unite in faith, love, and commitment,
+                  celebrating a bond written by destiny and sealed with prayers.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-3xl bg-white/45 border border-black/5 p-6 text-center soft-shadow">
+              <p className="text-sm text-gray-600 italic leading-relaxed">
+                May Allah fill our lives with mercy, affection, and peace, and
+                grant us a marriage filled with barakah and love.
+              </p>
+            </div>
+          </div>
+
+          {/* Location */}
+          <div className="rounded-2xl bg-white/45 border border-black/5 p-5">
+            <h3 className="text-lg font-semibold">Location</h3>
+            <p className="mt-1 text-sm text-[color:var(--ink)]/70">
+              Royal Marquee, Lahore — Please arrive 15 minutes early.
+            </p>
+          </div>
+
+          {/* Map */}
+          <div className="rounded-3xl overflow-hidden border border-white/25 soft-shadow">
+            <iframe
+              src={mapEmbed}
+              className="w-full h-[280px]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
+          {/* Footer */}
+          <div className="pt-2 text-center text-xs text-[color:var(--ink)]/55">
+            <p>With love,</p>
+            <p className="mt-1 font-semibold">
+              Umer <span className="text-[color:var(--ink)]/60">&</span> Mrs Umer
+            </p>
+          </div>
+
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={() => router.push("/")}
+              className="rounded-2xl bg-white/60 border border-black/5 px-6 py-3 hover:opacity-90"
+            >
+              Back to Home
+            </button>
+          </div>
+
+          <div className="h-10" />
         </div>
       </div>
     </main>
