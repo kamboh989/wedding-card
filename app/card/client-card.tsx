@@ -123,7 +123,7 @@ export default function CardClient() {
           {/* Details box */}
           <div
             className="
-              mt-5 rounded-2xl
+              mt-5 rounded-xl
               bg-white/70 backdrop-blur-sm
               border border-[#d8cbb8]/55
               shadow-[0_10px_30px_rgba(0,0,0,0.06)]
@@ -231,13 +231,13 @@ export default function CardClient() {
       </div>
 
       {/* ✅ CONTENT */}
-      <div className="relative z-10 mx-auto max-w-2xl px-5">
+      <div className="relative z-10 mx-auto max-w-2xl ">
         <div className="mt-5 space-y-6 reveal">
           {/* ✅ Personalized Invitation (IMAGE CARD) */}
           {/* Put your image in: /public/personalized-bg.png */}
           <div
             className="
-              relative rounded-[28px] overflow-hidden
+              relative rounded-[15px] overflow-hidden
               border border-black/10
               shadow-[0_25px_70px_rgba(0,0,0,0.18)]
             "
@@ -294,7 +294,7 @@ export default function CardClient() {
         {/* 🌙 Islamic Verse – Image Based */}
 <div
   className="
-    relative mt-10 rounded-[30px] overflow-hidden
+    relative mt-10 rounded-[20px] overflow-hidden
     border border-black/10
     shadow-[0_25px_70px_rgba(0,0,0,0.18)]
   "
