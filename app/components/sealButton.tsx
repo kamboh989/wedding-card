@@ -16,62 +16,64 @@ export default function SealButton({
       aria-label="Open Invitation"
       className="group relative flex flex-col items-center select-none"
     >
-      {/* WRAPPER with fixed width so text never wraps */}
-      <div className="relative w-28 h-28 flex items-center justify-center">
-        {/* OUTER WAX SEAL */}
+      <div className="relative w-32 h-32 flex items-center justify-center">
         <div
           className="
-            relative h-24 w-24 rounded-full
-            overflow-hidden
-            border border-black/5
-            shadow-[0_22px_55px_rgba(40,15,8,.32)]
-            transform-gpu
-            animate-[sealFloat_2.8s_ease-in-out_infinite]
-            group-hover:animate-none
-            group-hover:scale-[1.05]
-            active:scale-[0.97]
-            transition
+            relative h-28 w-28 rounded-full overflow-hidden
+            shadow-[0_22px_45px_rgba(0,0,0,0.25)]
+            border border-black/10
+            transform-gpu transition
+            active:scale-[0.98]
           "
         >
-          {/* Wax gradient */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,.55),transparent_45%),radial-gradient(circle_at_70%_85%,rgba(214,178,94,.45),transparent_55%),linear-gradient(135deg,#f7c7b6,#f2b3a3,#f7d7c7,#e9c46a)]" />
+          {/* wax body */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,.92),rgba(245,240,232,.78)_45%,rgba(224,216,204,.95)_78%,rgba(200,190,175,1)_100%)]" />
 
-          {/* Texture */}
-          <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,.35)_1px,transparent_2px)] [background-size:10px_10px]" />
+          {/* inner pressed ring */}
+          <div className="absolute inset-[14px] rounded-full bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,.55),rgba(0,0,0,.06)_70%)] shadow-[inset_0_6px_14px_rgba(0,0,0,.18),inset_0_-6px_12px_rgba(255,255,255,.55)] border border-black/10" />
 
-          {/* Inner ring */}
-          <div className="absolute inset-[10px] rounded-full border border-white/45 shadow-inner bg-white/15" />
-
-          {/* Center stamp */}
-          <div className="absolute inset-[18px] rounded-full grid place-items-center border border-black/10 bg-white/25 shadow-inner">
-            <span className="flex items-center gap-1 whitespace-nowrap font-[cursive] text-[color:var(--ink)]/80 text-xl leading-none">
-  {initials}
-</span>
-
+          {/* center stamp (MAKE IT BIGGER + CLIP TEXT) */}
+          <div
+            className="
+              absolute inset-[22px]
+              rounded-full
+              grid place-items-center
+              overflow-hidden
+              bg-[rgba(255,255,255,.10)]
+              shadow-[inset_0_5px_12px_rgba(0,0,0,.14),inset_0_-6px_14px_rgba(255,255,255,.55)]
+              border border-black/10
+              px-1
+            "
+          >
+            <span
+              className="
+                inline-flex items-center justify-center whitespace-nowrap
+                leading-none
+                font-[cursive]
+                text-[24px]
+                tracking-wide
+                text-[rgba(120,110,95,.92)]
+              "
+              style={{
+                textShadow:
+                  "1px 1px 0 rgba(255,255,255,0.60), -1px -1px 0 rgba(0,0,0,0.08)",
+              }}
+            >
+              {/* split to keep & smaller */}
+              <span>U</span>
+              <span className="mx-1 text-[20px] text-[rgba(120,110,95,.70)]">
+                &
+              </span>
+              <span>M</span>
+            </span>
           </div>
 
-          {/* Shine */}
+          {/* subtle shine */}
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute -left-1/2 top-[-40%] h-[200%] w-1/2 bg-white/50 blur-xl opacity-0 group-hover:opacity-100 animate-[shine_1.4s_ease-in-out_infinite]" />
+            <div className="absolute -left-1/2 top-[-35%] h-[200%] w-1/2 bg-white/55 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
         </div>
-
-        {/* OUTER RING – controlled (not too big) */}
-        <div
-          className="
-            pointer-events-none absolute
-            inset-0
-            rounded-full
-            border border-[color:var(--gold)]/35
-            animate-[ringPulse_2.2s_ease-in-out_infinite]
-          "
-        />
       </div>
-
-      {/* LABEL – guaranteed single row */}
-      <span className="mt-3 text-lg tracking-wide text-gray-300 whitespace-nowrap">
-        Open Invitation
-      </span>
     </button>
   );
 }

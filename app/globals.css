@@ -1,154 +1,200 @@
 @import "tailwindcss";
-
-
 @tailwind utilities;
 
 :root{
-  --peach-1:#f6c6b5;
-  --peach-2:#f2b6a6;
-  --peach-3:#f9d2c6;
-  --gold:#966e13;
-  --gold-soft:#f3de9a;
-  --ink:#0c0c0c;
+  --peach-light:#f9d7cb;
+  --peach-mid:#f2b8a6;
+  --peach-dark:#e8a892;
+  --fold-dark:rgba(0,0,0,.28);
+  --fold-light:rgba(255,255,255,.38);
+  --ink:#3a2a23;
 }
 
-html, body { height: 100%; font-family: var(--font-nunito), sans-serif; }
-
+/* =========================
+   ENVELOPE BASE (REAL PEACH)
+========================= */
 .bg-envelope{
-  background: radial-gradient(1200px 700px at 50% 20%, rgba(255,255,255,.35), transparent 60%),
-              linear-gradient(180deg, var(--peach-3), var(--peach-2));
+  position: relative;
+  background:
+    radial-gradient(1400px 900px at 50% -20%, #fff6, transparent 60%),
+    linear-gradient(180deg,
+      var(--peach-light) 0%,
+      var(--peach-mid) 55%,
+      var(--peach-dark) 100%
+    );
+  overflow:hidden;
 }
 
-.envelope-lines:before,
-.envelope-lines:after{
-  content:"";
+/* =========================
+   REALISTIC FOLDS (THICK+THIN)
+========================= */
+.envelope-folds{
   position:absolute;
   inset:0;
-  opacity:.18;
-  background:
-    linear-gradient(135deg, transparent 49.5%, rgba(60,35,25,.35) 50%, transparent 50.5%),
-    linear-gradient(225deg, transparent 49.5%, rgba(60,35,25,.35) 50%, transparent 50.5%);
   pointer-events:none;
 }
 
-@keyframes floaty {
-  0%,100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-@keyframes shine {
-  0% { transform: translateX(-120%) rotate(18deg); opacity:0; }
-  30% { opacity:.25; }
-  100% { transform: translateX(120%) rotate(18deg); opacity:0; }
-}
-@keyframes popIn {
-  0% { transform: translateY(14px) scale(.98); opacity:0; }
-  100% { transform: translateY(0) scale(1); opacity:1; }
+/* MAIN X FOLD (DEPTH) */
+.envelope-folds::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    /* dark core */
+    linear-gradient(135deg,
+      transparent 49.2%,
+      var(--fold-dark) 50%,
+      transparent 50.8%
+    ),
+    linear-gradient(45deg,
+      transparent 49.2%,
+      var(--fold-dark) 50%,
+      transparent 50.8%
+    ),
+
+    /* light edge */
+    linear-gradient(135deg,
+      transparent 49.6%,
+      var(--fold-light) 49.9%,
+      transparent 50.2%
+    ),
+    linear-gradient(45deg,
+      transparent 49.6%,
+      var(--fold-light) 49.9%,
+      transparent 50.2%
+    );
+  filter: blur(.4px);
+  opacity:.75;
 }
 
-.card-3d{
-  transform-style: preserve-3d;
-  perspective: 1200px;
+/* FLAP SHADOWS (REAL PAPER DEPTH) */
+.envelope-folds::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 600px at 50% 60%, rgba(0,0,0,.18), transparent 62%),
+    radial-gradient(1200px 700px at 50% 0%, rgba(255,255,255,.25), transparent 60%);
+  opacity:.65;
 }
 
-.glass{
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.24);
-  backdrop-filter: blur(14px);
+/* =========================
+   SCRIPT TEXT (INVITATION)
+========================= */
+.envelope-script{
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  letter-spacing:.02em;
+  color: rgba(60,40,30,.65);
+  text-shadow: 0 12px 22px rgba(0,0,0,.15);
 }
 
-.gold-text{
-  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes openTop{
+  from{transform:scaleY(1)}
+  to{transform:scaleY(0)}
+}
+@keyframes openBottom{
+  from{transform:scaleY(1)}
+  to{transform:scaleY(0)}
+}
+@keyframes sealPop{
+  0%{transform:translate(-50%,-50%) scale(1)}
+  60%{transform:translate(-50%,-56%) scale(1.08)}
+  100%{transform:translate(-50%,-82%) scale(.92);opacity:0}
 }
 
-.soft-shadow{
-  box-shadow: 0 20px 80px rgba(25,10,5,.25);
-}
-
-.reveal{
-  animation: popIn .6s ease-out both;
-}
 
 
-@keyframes sealFloat {
-  0%, 100% { transform: translateY(0px) rotate(-1deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
-}
-
-@keyframes ringPulse {
-  0%, 100% { transform: scale(1); opacity: .55; }
-  50% { transform: scale(1.06); opacity: .85; }
-}
-
-@keyframes openTop {
+@keyframes flapTopOpen {
   0% { transform: scaleY(1); }
   100% { transform: scaleY(0); }
 }
 
-@keyframes openBottom {
+@keyframes flapBottomOpen {
   0% { transform: scaleY(1); }
   100% { transform: scaleY(0); }
 }
 
-@keyframes sealFade {
-  0% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.6); }
+@keyframes fadeOutOverlay {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-@keyframes sparkle {
-  0%,100% { transform: translateY(0); opacity: 0.4; }
-  50% { transform: translateY(-10px); opacity: 1; }
+@keyframes envTopOut {
+  to { transform: translateY(-110%); }
+}
+@keyframes envBottomOut {
+  to { transform: translateY(110%); }
+}
+@keyframes envLeftOut {
+  to { transform: translateX(-110%); }
+}
+@keyframes envRightOut {
+  to { transform: translateX(110%); }
 }
 
-@keyframes envelopeTop {
-  0% { transform: scaleY(1); }
-  100% { transform: scaleY(0); }
-}
-@keyframes envelopeBottom {
-  0% { transform: scaleY(1); }
-  100% { transform: scaleY(0); }
-}
-@keyframes sealBreak {
-  0% { transform: scale(1); opacity: 1; }
-  70% { transform: scale(1.08); opacity: 1; }
-  100% { transform: scale(0.4); opacity: 0; }
+/* seal stays, but fades a touch (optional) */
+@keyframes envSealHold {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
 
-/* Golden cross card pattern */
-.bg-golden-cross {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(45deg, rgba(230,200,106,0.12) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(230,200,106,0.12) 1px, transparent 1px);
-  background-size: 32px 32px;
-  opacity: 0.55;
+/* ---- Opening pieces (envelope texture + cross included INSIDE pieces) ---- */
+.env-piece{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  will-change: transform;
+  /* envelope base */
+  background:
+    radial-gradient(1400px 900px at 50% -20%, #fff6, transparent 60%),
+    linear-gradient(180deg, var(--peach-light) 0%, var(--peach-mid) 55%, var(--peach-dark) 100%);
 }
 
-/* Shimmer layer */
-.bg-golden-shimmer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(230,200,106,0.35) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  animation: shimmerMove 10s linear infinite;
+/* cross lines baked into pieces (so cross moves away too) */
+.env-piece::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(135deg, transparent 49.2%, var(--fold-dark) 50%, transparent 50.8%),
+    linear-gradient(45deg,  transparent 49.2%, var(--fold-dark) 50%, transparent 50.8%),
+    linear-gradient(135deg, transparent 49.6%, var(--fold-light) 49.9%, transparent 50.2%),
+    linear-gradient(45deg,  transparent 49.6%, var(--fold-light) 49.9%, transparent 50.2%);
+  filter: blur(.4px);
+  opacity:.8;
+  mix-blend-mode:multiply;
 }
 
-@keyframes shimmerMove {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+/* subtle paper depth */
+.env-piece::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 600px at 50% 60%, rgba(0,0,0,.16), transparent 62%),
+    radial-gradient(1200px 700px at 50% 0%, rgba(255,255,255,.22), transparent 60%);
+  opacity:.7;
 }
 
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0); }
-  80% { transform: translateY(-10px); }
+/* triangle shapes + animations */
+.env-top{
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+  animation: envTopOut 2.8s ease-out forwards;
 }
+.env-bottom{
+  clip-path: polygon(0 100%, 100% 100%, 50% 50%);
+  animation: envBottomOut 2.8s ease-out forwards;
+}
+.env-left{
+  clip-path: polygon(0 0, 0 100%, 50% 50%);
+  animation: envLeftOut 2.8s ease-out forwards;
+}
+.env-right{
+  clip-path: polygon(100% 0, 100% 100%, 50% 50%);
+  animation: envRightOut 2.8s ease-out forwards;
+}
+
