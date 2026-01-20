@@ -1,3 +1,4 @@
+/* globals.css (UPDATED) */
 @import "tailwindcss";
 @tailwind utilities;
 
@@ -92,54 +93,8 @@
 /* =========================
    ANIMATIONS
 ========================= */
-@keyframes openTop{
-  from{transform:scaleY(1)}
-  to{transform:scaleY(0)}
-}
-@keyframes openBottom{
-  from{transform:scaleY(1)}
-  to{transform:scaleY(0)}
-}
-@keyframes sealPop{
-  0%{transform:translate(-50%,-50%) scale(1)}
-  60%{transform:translate(-50%,-56%) scale(1.08)}
-  100%{transform:translate(-50%,-82%) scale(.92);opacity:0}
-}
-
-
-
-@keyframes flapTopOpen {
-  0% { transform: scaleY(1); }
-  100% { transform: scaleY(0); }
-}
-
-@keyframes flapBottomOpen {
-  0% { transform: scaleY(1); }
-  100% { transform: scaleY(0); }
-}
-
-@keyframes fadeOutOverlay {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 @keyframes envTopOut {
   to { transform: translateY(-110%); }
-}
-@keyframes envBottomOut {
-  to { transform: translateY(110%); }
-}
-@keyframes envLeftOut {
-  to { transform: translateX(-110%); }
-}
-@keyframes envRightOut {
-  to { transform: translateX(110%); }
-}
-
-/* seal stays, but fades a touch (optional) */
-@keyframes envSealHold {
-  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
 
 /* ---- Opening pieces (envelope texture + cross included INSIDE pieces) ---- */
@@ -148,6 +103,8 @@
   inset:0;
   pointer-events:none;
   will-change: transform;
+  z-index: 2; /* ✅ IMPORTANT: keep pieces above white base */
+
   /* envelope base */
   background:
     radial-gradient(1400px 900px at 50% -20%, #fff6, transparent 60%),
@@ -183,18 +140,23 @@
 /* triangle shapes + animations */
 .env-top{
   clip-path: polygon(0 0, 100% 0, 50% 50%);
-  animation: envTopOut 2.8s ease-out forwards;
+  animation: envTopOut 5.2s ease-out forwards;
+  z-index: 5;
 }
+
+/* ✅ static — stay in place */
 .env-bottom{
   clip-path: polygon(0 100%, 100% 100%, 50% 50%);
-  animation: envBottomOut 2.8s ease-out forwards;
+  animation: none !important;
+  z-index: 2;
 }
 .env-left{
   clip-path: polygon(0 0, 0 100%, 50% 50%);
-  animation: envLeftOut 2.8s ease-out forwards;
+  animation: none !important;
+  z-index: 2;
 }
 .env-right{
   clip-path: polygon(100% 0, 100% 100%, 50% 50%);
-  animation: envRightOut 2.8s ease-out forwards;
+  animation: none !important;
+  z-index: 2;
 }
-
