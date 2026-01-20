@@ -1,4 +1,3 @@
-/* app/page.tsx (UPDATED) */
 "use client";
 
 import { useMemo, useState } from "react";
@@ -24,10 +23,9 @@ export default function HomePage() {
     setErr("");
 
     setOpening(true);
-
-    setTimeout(() => {
-      router.push(`/card?phone=${encodeURIComponent(phone)}`);
-    }, 2350);
+setTimeout(() => {
+  router.push(`/card?phone=${encodeURIComponent(phone)}`);
+}, 1760);
   }
 
   return (
@@ -35,26 +33,29 @@ export default function HomePage() {
       {/* ALWAYS show folds/cross on top of photo */}
       <div className="absolute inset-0 envelope-folds" />
 
-      {/* ✅ OPENING overlay: ONLY TOP FLAP MOVES, WHITE REVEALS UNDER IT */}
-      {opening && (
-        <div className="absolute inset-0 z-50 overflow-hidden pointer-events-none">
-          {/* ✅ WHITE BASE (this will reveal) */}
-          <div className="absolute inset-0 bg-white" />
+      {/* OPENING overlay (optional) */}
+    {opening && (
+  <div className="absolute inset-0 z-50 overflow-hidden pointer-events-none">
+    {/* BACKGROUND REVEAL (plain peach) — yahan envelope nahi rahega */}
+    <div className="absolute inset-0 bg-[color:var(--peach-mid)]" />
 
-          {/* ✅ STATIC envelope body (covers white) */}
-          <div className="env-piece env-bottom" />
-          <div className="env-piece env-left" />
-          <div className="env-piece env-right" />
+    {/* 4 envelope pieces (cross included) move out */}
+    <div className="env-piece env-top" />
+    <div className="env-piece env-bottom" />
+    <div className="env-piece env-left" />
+    <div className="env-piece env-right" />
 
-          {/* ✅ TOP FLAP moves out => white shows */}
-          <div className="env-piece env-top" />
+    {/* center seal stays */}
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="h-24 w-24 rounded-full bg-[#f1eee9] border border-black/10 shadow-[0_24px_55px_rgba(0,0,0,0.22)] grid place-items-center">
+        <span className="font-[cursive] text-2xl text-[rgba(120,110,95,.92)]">
+          U &amp; M
+        </span>
+      </div>
+    </div>
+  </div>
+)}
 
-          {/* center seal stays */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-           
-          </div>
-        </div>
-      )}
 
       {/* CONTENT */}
       <div className="relative z-10 mx-auto flex min-h-screen max-w-md flex-col items-center justify-center px-6">
@@ -62,19 +63,20 @@ export default function HomePage() {
   <div
     className="
       rounded-2xl
-       backdrop-blur-md
-      border border-black/25
-      shadow-[0_12px_35px_rgba(0,0,0,0.15)]
+      bg-white/80 backdrop-blur-md
+      border border-black/20
+      shadow-[0_10px_30px_rgba(0,0,0,0.15)]
       px-4 py-3
     "
   >
     <input
       value={phone}
       onChange={(e) => setPhone(e.target.value)}
-      placeholder="(e.g. 03025676234)"
+      placeholder="e.g. 0302 567 6234"
+      inputMode="numeric"
       className="
         w-full bg-transparent text-center
-        text-base font-medium tracking-wide
+        text-base font-semibold tracking-wide
         text-[color:var(--ink)]
         placeholder:text-black/45
         outline-none
@@ -83,12 +85,12 @@ export default function HomePage() {
   </div>
 
   {err ? (
-    <p className="mt-2 text-xs text-red-600/80 text-center">
+    <p className="mt-2 text-xs text-red-600/85 text-center">
       {err}
     </p>
   ) : (
-    <p className="mt-2 text-[13px] text-gray-600 text-center">
-      Please enter the inivited number
+    <p className="mt-2 text-[12px] text-black/45 text-center">
+      Please enter the invited number
     </p>
   )}
 </div>
