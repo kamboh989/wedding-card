@@ -85,95 +85,100 @@ export default function CardClient() {
     venue: string;
   }) => {
     return (
-      <div
-        className="
-          relative overflow-hidden rounded-[28px]
-          border border-black/5
-          shadow-[0_18px_60px_rgba(0,0,0,0.10)]
-          bg-white
-        "
-        style={{
-          backgroundImage: `url(/card.jpg)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        {/* readability overlay (very soft) */}
-        <div className="absolute inset-0 bg-white/10" />
+    <div
+  className="
+    relative overflow-hidden rounded-[28px]
+    border border-black/5
+    shadow-[0_18px_60px_rgba(0,0,0,0.10)]
+    bg-white
+  "
+>
+  {/* 🎥 Background Video */}
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    poster="/card.jpg" // fallback image (optional but recommended)
+    className="absolute inset-0 w-full h-full object-cover"
+  >
+    <source src="/v.mp4" type="video/mp4" />
+  </video>
 
-        {/* elegant top ribbon */}
-        <div className="absolute left-0 right-0 top-0 h-10 bg-gradient-to-b from-white/90 to-transparent" />
+  {/* readability overlay (very soft) */}
+  <div className="absolute inset-0 bg-white/25" />
 
-        {/* content */}
-        <div className="relative z-10 p-6 sm:p-7 text-center">
-          {/* Title */}
-          <div className="inline-flex items-center gap-2">
-            <span className="h-[1px] w-10 bg-[#b9b2a2]/70" />
-            <h3 className="text-xl sm:text-2xl font-semibold tracking-wide text-[#3a2f2a] font-[serif]">
-              {title}
-            </h3>
-            <span className="h-[1px] w-10 bg-[#b9b2a2]/70" />
-          </div>
+  {/* elegant top ribbon */}
+  <div className="absolute left-0 right-0 top-0 h-10 bg-gradient-to-b from-white/90 to-transparent" />
 
-          {/* subtle subtitle */}
-          <p className="mt-2 text-xs tracking-[0.35em] uppercase text-[#6b5f58]/70">
-            Wedding Festivities
-          </p>
+  {/* content */}
+  <div className="relative z-10 p-6 sm:p-7 text-center">
+    {/* Title */}
+    <div className="inline-flex items-center gap-2">
+      <span className="h-[1px] w-10 bg-[#b9b2a2]/70" />
+      <h3 className="text-xl sm:text-2xl font-semibold tracking-wide text-[#3a2f2a] font-[serif]">
+        {title}
+      </h3>
+      <span className="h-[1px] w-10 bg-[#b9b2a2]/70" />
+    </div>
 
-          {/* Details box */}
-          <div
-            className="
-              mt-5 rounded-xl
-              bg-white/70 backdrop-blur-sm
-              border border-[#d8cbb8]/55
-              shadow-[0_10px_30px_rgba(0,0,0,0.06)]
-              px-5 py-4
-            "
-          >
-            <div className="space-y-2">
-              <p className="text-sm sm:text-[15px] text-[#3a2f2a]">
-                <span className="font-semibold text-[#2f2622]">Date:</span>{" "}
-                <span className="text-[#5a4e47]">{date}</span>
-              </p>
+    {/* subtle subtitle */}
+    <p className="mt-2 text-xs tracking-[0.35em] uppercase text-[#6b5f58]/70">
+      Wedding Festivities
+    </p>
 
-              <p className="text-sm sm:text-[15px] text-[#3a2f2a]">
-                <span className="font-semibold text-[#2f2622]">Time:</span>{" "}
-                <span className="text-[#5a4e47]">{time}</span>
-              </p>
+    {/* Details box */}
+    <div
+      className="
+        mt-5 
+        px-5 py-4
+      "
+    >
+      <div className="space-y-2">
+        <p className="text-sm sm:text-[15px] text-[#3a2f2a]">
+          <span className="font-semibold text-[#2f2622]">Date:</span>{" "}
+          <span className="text-[#5a4e47]">{date}</span>
+        </p>
 
-              <p className="text-sm sm:text-[15px] text-[#3a2f2a]">
-                <span className="font-semibold text-[#2f2622]">Venue:</span>{" "}
-                <span className="text-[#5a4e47]">{venue}</span>
-              </p>
-            </div>
+        <p className="text-sm sm:text-[15px] text-[#3a2f2a]">
+          <span className="font-semibold text-[#2f2622]">Time:</span>{" "}
+          <span className="text-[#5a4e47]">{time}</span>
+        </p>
 
-            {/* divider */}
-            <div className="my-4 flex justify-center">
-              <span className="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#b9b2a2] to-transparent" />
-            </div>
-
-            {/* guest tag */}
-            <div className="flex justify-center">
-              <span
-                className="
-                  inline-flex items-center rounded-full
-                  bg-[#f7f3ee]/90
-                  border border-[#d8cbb8]/60
-                  px-4 py-1 text-xs
-                  text-[#5a4e47]
-                "
-              >
-                Reserved for {guest.name}
-              </span>
-            </div>
-          </div>
-
-          {/* small footer line */}
-          <p className="mt-4 text-[11px] tracking-[0.30em] uppercase text-[#6b5f58]/60">
-            Please arrive 15 minutes early
-          </p>
-        </div>
+        <p className="text-sm sm:text-[15px] text-[#3a2f2a]">
+          <span className="font-semibold text-[#2f2622]">Venue:</span>{" "}
+          <span className="text-[#5a4e47]">{venue}</span>
+        </p>
       </div>
+
+      {/* divider */}
+      <div className="my-4 flex justify-center">
+        <span className="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#b9b2a2] to-transparent" />
+      </div>
+
+      {/* guest tag */}
+      <div className="flex justify-center">
+        <span
+          className="
+            inline-flex items-center rounded-full
+            bg-[#f7f3ee]/90
+            border border-[#d8cbb8]/60
+            px-4 py-1 text-xs
+            text-[#5a4e47]
+          "
+        >
+          Reserved for {guest.name}
+        </span>
+      </div>
+    </div>
+
+    {/* footer */}
+    <p className="mt-4 text-[11px] tracking-[0.30em] uppercase text-[#6b5f58]/60">
+      Please arrive 15 minutes early
+    </p>
+  </div>
+</div>
+
     );
   };
 
@@ -299,7 +304,7 @@ export default function CardClient() {
     shadow-[0_25px_70px_rgba(0,0,0,0.18)]
   "
   style={{
-    backgroundImage: "url(/card3.jpg)",
+    backgroundImage: "url(/long.jpg)",
     backgroundSize: "cover",
     backgroundPosition: "center",
   }}
@@ -365,12 +370,37 @@ export default function CardClient() {
           </div>
 
           {/* Location */}
-          <div className="rounded-2xl bg-white/45 border border-black/5 p-5">
-            <h3 className="text-lg font-semibold">Location</h3>
-            <p className="mt-1 text-sm text-[color:var(--ink)]/70">
-              Royal Marquee, Lahore — Please arrive 15 minutes early.
-            </p>
-          </div>
+         {/* ✅ Video Section (Above Location & Map) */}
+<div className="rounded-3xl overflow-hidden border border-black/10 shadow-[0_25px_70px_rgba(0,0,0,0.18)]">
+  <div className="relative">
+    <video
+      className="w-full h-[260px] sm:h-[340px] object-cover"
+      autoPlay
+      muted
+      loop
+      playsInline
+      poster="/thanks.mp4"
+    >
+      <source src="/thanks.mp4" type="video/mp4" />
+    </video>
+
+    {/* soft overlay for readability */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+
+    {/* optional text on video */}
+    <div className="absolute inset-0 flex items-end p-5 sm:p-6">
+      <div>
+        <p className="text-[11px] tracking-[0.35em] uppercase text-white/80">
+          Venue Preview
+        </p>
+        <h3 className="mt-1 text-xl sm:text-2xl font-[serif] font-semibold text-white">
+          Royal Marquee, Lahore
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
 
           {/* Map */}
           <div className="rounded-3xl overflow-hidden border border-white/25 soft-shadow">
