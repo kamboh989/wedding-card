@@ -1,7 +1,7 @@
 "use client";
 
 export default function SealButton({
-  initials = "U & M",
+  initials = "U & A",
   onClick,
   disabled,
 }: {
@@ -64,7 +64,7 @@ export default function SealButton({
               <span className="mx-1 text-[20px] text-[rgba(120,110,95,.70)]">
                 &
               </span>
-              <span>M</span>
+              <span>A</span>
             </span>
           </div>
 

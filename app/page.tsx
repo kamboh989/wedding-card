@@ -23,9 +23,12 @@ export default function HomePage() {
     setErr("");
 
     setOpening(true);
+
 setTimeout(() => {
   router.push(`/card?phone=${encodeURIComponent(phone)}`);
-}, 1760);
+}, 2800); // animation complete hone ke baad
+
+
   }
 
   return (
@@ -34,16 +37,15 @@ setTimeout(() => {
       <div className="absolute inset-0 envelope-folds" />
 
       {/* OPENING overlay (optional) */}
-    {opening && (
-  <div className="absolute inset-0 z-50 overflow-hidden pointer-events-none">
-    {/* BACKGROUND REVEAL (plain peach) — yahan envelope nahi rahega */}
-    <div className="absolute inset-0 bg-[color:var(--peach-mid)]" />
+     {opening && (
+  <div className="opening-overlay absolute inset-0 z-50 overflow-hidden pointer-events-none">
+    {/* peach -> warm white reveal */}
+    <div className="opening-reveal absolute inset-0" />
+<div className="env-piece env-top" />
+<div className="env-piece env-bottom" />
+<div className="env-piece env-left" />
+<div className="env-piece env-right" />
 
-    {/* 4 envelope pieces (cross included) move out */}
-    <div className="env-piece env-top" />
-    <div className="env-piece env-bottom" />
-    <div className="env-piece env-left" />
-    <div className="env-piece env-right" />
 
     {/* center seal stays */}
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -55,6 +57,7 @@ setTimeout(() => {
     </div>
   </div>
 )}
+
 
 
       {/* CONTENT */}

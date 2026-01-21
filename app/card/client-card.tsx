@@ -213,7 +213,7 @@ export default function CardClient() {
               </span>
               <span className="mx-2 text-white/70 font-light">&</span>
               <span className="bg-gradient-to-b from-[#f6e6b3] via-[#e6c86a] to-[#cfa33f] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">
-                Mrs Umer
+                Amna
               </span>
 
               <span className="absolute -bottom-2 left-1/2 h-[2px] w-24 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-[#e6c86a] to-transparent opacity-80" />
@@ -386,7 +386,7 @@ export default function CardClient() {
           <div className="pt-2 text-center text-xs text-[color:var(--ink)]/55">
             <p>With love,</p>
             <p className="mt-1 font-semibold">
-              Umer <span className="text-[color:var(--ink)]/60">&</span> Mrs Umer
+              Umer <span className="text-[color:var(--ink)]/60">&</span> Amna
             </p>
           </div>
 
