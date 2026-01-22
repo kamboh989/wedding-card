@@ -92,16 +92,23 @@ setTimeout(() => {
       {err}
     </p>
   ) : (
-    <p className="mt-2 text-[12px] text-black/45 text-center">
-      Please enter the invited number
+    <p className="mt-2 text-[12px] text-black/65 text-center">
+      Please enter the Phone number
     </p>
   )}
 </div>
 
+ 
 
-        <div className="mt-10 mb-15">
-          <SealButton initials="U & M" onClick={openCard} />
-        </div>
+           <div className="mt-10 mb-15 flex flex-col items-center">
+  <SealButton initials="U & M" onClick={openCard} />
+
+  {/* helper text */}
+  <p className="mt-2 text-[12px] font-medium tracking-[0.30em] uppercase text-black/50">
+    Open the Invitation
+  </p>
+</div>
+
 
         <div className="text-center">
           <p className="envelope-script text-2xl leading-tight text-black/45">
